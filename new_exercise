@@ -1,0 +1,67 @@
+mkdir $1
+cd $1
+
+touch in.txt
+touch out_expected.txt
+
+touch main.c
+echo '// Owner: '$(hostname -s)'
+// Exercise: '$1'
+// Created in '$(date +"%d/%m/%Y %T")'
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <string.h>
+
+typedef long long int Integer;
+
+
+int main(){
+
+    Integer n = 0;
+
+    while( scanf("%lld", &n) != EOF ){
+
+    }
+
+    return 0;
+}' >main.c
+
+touch makefile
+echo 'make:
+\trm -f run
+\tgcc main.c -o run
+\trm -f out.txt
+\t./run < in.txt > out.txt
+\tdiff -c out_expected.txt out.txt
+
+alltests:
+\tgcc main.c -o run
+\tmake test
+\tdiff -c out_expected.txt out.txt
+
+test:
+\tchmod +x test.sh
+\t./test.sh in.txt
+
+' >makefile
+
+touch test.sh
+echo '
+#!/bin/bash
+
+rm -f out.txt
+touch out.txt
+
+while IFS='' read -r line || [[ -n "$line" ]]; do
+\trm -f aux.in
+\ttouch aux.in
+\techo $line > aux.in
+\t./run < aux.in >> out.txt
+\trm aux.in
+done < "$1"
+
+' > test.sh
+
+code .

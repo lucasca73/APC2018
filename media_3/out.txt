@@ -1,0 +1,4 @@
+Media: 4.8
+Aluno reprovado.
+Media: 7.3
+Aluno aprovado.

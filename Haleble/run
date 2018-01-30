@@ -1,0 +1,2 @@
+g++ -o Haleble Haleble.cpp -std=c++11 -lm -O2
+./Haleble < Haleble.in

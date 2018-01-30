@@ -1,0 +1,40 @@
+#!/bin/bash
+
+name=$1
+nl="\n"
+compile_command="g++ -o $name $name.cpp -std=c++11 -lm -O2"
+c_content="#include <stdio.h>$nl$nl""int main() {$nl\treturn 0;$nl}$nl"
+cpp_content="#include <iostream>$nl$nl""#define debug(x) cout << #x <<\" = \" << x << endl$nl""#define fori(i, ini, lim) for(int i = int(ini); i < int(lim); i++)$nl""#define ford(i, ini, lim) for(int i = int(ini); i >= int(lim); i—)$nl$nl""using namespace std;$nl$nl""typedef long long ll;$nl""typedef long double ld;$nl""typedef pair<int, int> ii;$nl$nl""int main() {$nl\treturn 0;$nl}$nl"
+main_content=$cpp_content
+file_ext="cpp"
+while test $# -gt 0
+do
+    case "$1" in
+        -c) compile_command="gcc -o $name $name.c -lm -O2"
+             main_content=$c_content
+             file_ext="c"
+            ;;
+        *)
+            ;;
+    esac
+    shift
+done
+
+mkdir $name
+echo -e $main_content >> ./$name/$name.$file_ext
+
+touch ./$name/$name.in
+touch ./$name/$name.out
+touch ./$name/result.txt
+touch ./$name/notes.txt
+
+touch ./$name/makefile
+echo -e "make:
+\t$compile_command
+\t./$name < $name.in > result.txt
+\tdiff -c result.txt $name.out
+" >> ./$name/makefile
+
+touch ./$name/run
+echo -e "$compile_command
+./$name < $name.in" >> ./$name/run
