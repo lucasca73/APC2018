@@ -8,20 +8,56 @@
 #include <string.h>
 
 
-
 int main(){
 
-    char str[100];
-    
+    char str1[100];
+    char str2[100];
+
+    char result[100];
 
     int n = 0;
-    scanf("%d", &n);
+    scanf("%d ", &n);
 
     while(n > 0){
 
-        scanf("%[^\n]s", str);
+        // fgets(str ,100, stdin);
+        
+        scanf("%s %s", str1, str2);
 
-        printf("%s\n", str);
+        //printf("%s %s", str1, str2);
+
+        int m = 0;
+        int i = 0;
+        int a = 0;
+        int b = 0;
+        while(i < 100){
+            
+            m = (m+1)%2;
+            if(m){
+
+                if(!*(str1+a)){
+                    *(result+i) = *(str2+b);
+                    b++;
+                }else{
+                    *(result+i) = *(str1+a);
+                    a++;
+                }
+
+            }else{
+
+                if(!*(str2+b)){
+                    *(result+i) = *(str1+a);
+                    a++;
+                }else{
+                    *(result+i) = *(str2+b);
+                    b++;
+                }
+            }
+
+            i++;
+        }
+
+        printf("%s\n", result);
 
         n--;
     }
