@@ -19,10 +19,11 @@ typedef long long int Integer;
 
 int main(){
 
-    Integer n = 0;
+    int n = 0;
 
-    while( scanf("%lld", &n) != EOF ){
+    while( n > 0 ){
 
+        n--;
     }
 
     return 0;
