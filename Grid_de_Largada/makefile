@@ -2,7 +2,7 @@ make:
 	rm -f run
 	gcc main.c -o run
 	rm -f out.txt
-	time ./run < in.txt > out.txt
+	./run < in.txt > out.txt
 	diff -c out_expected.txt out.txt
 
 alltests:
@@ -13,3 +13,5 @@ alltests:
 test:
 	chmod +x test.sh
 	./test.sh in.txt
+
+
