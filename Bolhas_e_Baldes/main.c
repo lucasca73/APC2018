@@ -17,6 +17,8 @@ long long int values[T];
 
 long long int max = 0;
 
+
+
 long long int sort(){
 
     long long int times = 1;
@@ -24,10 +26,16 @@ long long int sort(){
     int i = 0;
     for(; max > 0; i++){
 
+        
+
         int passed = false;
         int k = 1;
 
         for(; k < max; k++){
+
+            // if( values[k-1] == (k-1) ) {
+            //     break;
+            // }
 
             if (values[k-1] > values[k]){
                 //Debug
@@ -51,19 +59,6 @@ long long int sort(){
         }
     }
     
-    return times;
-
-}
-
-
-long long int count(){
-
-    long long int times = 0;
-    long long int i = 0;
-    for(; i < max; i++){
-        times += llabs(values[values[i]] - i);
-    }
-
     return times;
 }
 

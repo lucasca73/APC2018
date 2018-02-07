@@ -37,7 +37,7 @@ echo 'make:
 \trm -f run
 \tgcc main.c -o run
 \trm -f out.txt
-\t./run < in.txt > out.txt
+\t./time run < in.txt > out.txt
 \tdiff -c out_expected.txt out.txt
 
 alltests:
