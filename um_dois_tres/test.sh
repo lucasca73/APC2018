@@ -5,11 +5,11 @@ rm -f out.txt
 touch out.txt
 
 while IFS= read -r line || [[ -n "$line" ]]; do
-	rm -f aux.in
-	touch aux.in
-	echo $line > aux.in
-	time ./run < aux.in >> out.txt
-	rm aux.in
+\trm -f aux.in
+\ttouch aux.in
+\techo $line > aux.in
+\ttime ./run < aux.in >> out.txt
+\trm aux.in
 done < "$1"
 
 

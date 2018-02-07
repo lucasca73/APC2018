@@ -20,13 +20,20 @@ typedef long long int Integer;
 #define true 1
 #define false 0
 
+
+
 int main(){
 
     int n = 0;
 
-    while( n > 0 ){
+    scanf("%d", &n);
 
-        n--;
+    int it = 0;
+    while( it < n ){
+
+        printf("Hi\n");
+
+        it++;
     }
 
     return 0;
@@ -37,7 +44,7 @@ echo 'make:
 \trm -f run
 \tgcc main.c -o run
 \trm -f out.txt
-\t./time run < in.txt > out.txt
+\ttime ./run < in.txt > out.txt
 \tdiff -c out_expected.txt out.txt
 
 alltests:
